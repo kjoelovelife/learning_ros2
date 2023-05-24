@@ -15,7 +15,7 @@ def generate_launch_description() -> LaunchDescription:
     )
 
     path = Node(
-        package="python_package",
+        package="lesson4_python",
         executable="turtle_draw_circle_answer",
         name="turtle_draw_circle",
         output="screen",

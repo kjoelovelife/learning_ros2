@@ -22,7 +22,15 @@ class Subscriber(Node):
 def main(args=None):
     rclpy.init(args=args)
     subscriber = Subscriber()
-    rclpy.spin(subscriber)
+
+    try:
+        rclpy.spin(subscriber)
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        subscriber.destroy_node()
+
     rclpy.shutdown()
 
 

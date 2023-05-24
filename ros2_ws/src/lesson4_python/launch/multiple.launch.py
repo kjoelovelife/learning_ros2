@@ -6,14 +6,14 @@ from launch_ros.actions import Node
 def generate_launch_description() -> LaunchDescription:
     
     publisher = Node(
-        package="python_package",
+        package="lesson4_python",
         executable="publisher",
         namespace="",
         name="publisher_node"
     )
 
     subscriber = Node(
-        package="python_package",
+        package="lesson4_python",
         executable="subscriber",
         namespace="",
         name="subscriber_node"

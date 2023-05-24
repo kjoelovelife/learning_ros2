@@ -25,7 +25,16 @@ class Publisher(Node):
 def main(args=None):
     rclpy.init(args=args)
     publisher = Publisher()
-    rclpy.spin(publisher)
+    
+    try:
+        rclpy.spin(publisher)
+    
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        publisher.destroy_node()
+    
     rclpy.shutdown()
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@ import os
 from setuptools import setup
 from glob import glob
 
-package_name = 'python_package'
+package_name = 'lesson4_python'
 
 setup(
     name=package_name,
