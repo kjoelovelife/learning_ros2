@@ -16,7 +16,7 @@ class LunchInfoSubscriber(Node):
     def callback_subscriber(self, msg: Lunch):
         content = f"""
         How many bowls of rice do you use? {msg.bowls_of_rice}
-        What's the color of bowls? {msg.color_of_bows}
+        What's the color of bowls? {msg.color_of_bowls}
         What types of the meats do you eat? {msg.meats}
         What types of the vegetables do you eat? {msg.vegetables}
         """

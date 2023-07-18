@@ -21,10 +21,10 @@ class LunchInfoPublisher(Node):
         self.lunch = Lunch()
         self.lunch.bowls_of_rice = 2
         color = Purple()
-        self.lunch.color_of_bows.r = color.R
-        self.lunch.color_of_bows.g = color.G
-        self.lunch.color_of_bows.b = color.B
-        self.lunch.color_of_bows.a = color.A
+        self.lunch.color_of_bowls.r = color.R
+        self.lunch.color_of_bowls.g = color.G
+        self.lunch.color_of_bowls.b = color.B
+        self.lunch.color_of_bowls.a = color.A
         self.lunch.meats = ["fish", "pork"]
         self.lunch.vegetables = ["spinach", "tomato"]
         self._timer = self.create_timer(

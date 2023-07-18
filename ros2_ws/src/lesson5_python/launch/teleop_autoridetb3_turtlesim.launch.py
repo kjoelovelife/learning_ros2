@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
-
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition
 from launch.substitutions import TextSubstitution, LaunchConfiguration
-
-
 
 def generate_launch_description() -> LaunchDescription:
 
@@ -22,8 +19,6 @@ def generate_launch_description() -> LaunchDescription:
         default_value=TextSubstitution(text="/autorideTB3/cmd_vel"),
         description="Topic name for cmd_vel"
     )
-
-
 
     # Configure Launch Arguments
     use_turtlesim_config = LaunchConfiguration(use_turtlesim_arg.name)

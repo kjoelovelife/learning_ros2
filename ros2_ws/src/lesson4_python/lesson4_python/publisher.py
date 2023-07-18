@@ -13,7 +13,7 @@ class Publisher(Node):
         )
 
         self.word = String()
-        self.word.data = "Hello, ROS 2! I'll make an interesting robot!"
+        self.word.data = "Hello, ROS 2! I'll make an interesting!"
         self._timer = self.create_timer(
             timer_period_sec=1.0,
             callback=self.callback_timer
