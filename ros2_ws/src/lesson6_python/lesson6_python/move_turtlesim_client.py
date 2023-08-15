@@ -22,9 +22,9 @@ class MoveTurtlesomClient(Node):
             self.get_logger().info(f"Wait for the \"{self._client.srv_name}\" service...")
 
 
-        self.call_service_async(path="line")
-        self.call_service_async(path="square")
-        self.call_service_async(path="circle")
+        self.call_service_async(path=TurtlesimPath.Line)
+        self.call_service_async(path=TurtlesimPath.Square)
+        self.call_service_async(path=TurtlesimPath.Circle)
 
     def call_service_async(self, path: str):
         request = MoveTurtlesim.Request()
