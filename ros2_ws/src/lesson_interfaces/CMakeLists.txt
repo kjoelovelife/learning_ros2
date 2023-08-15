@@ -34,6 +34,7 @@ endif()
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Lunch.msg"
+  "srv/MoveTurtlesim.srv"
   DEPENDENCIES std_msgs geometry_msgs
 )
 
