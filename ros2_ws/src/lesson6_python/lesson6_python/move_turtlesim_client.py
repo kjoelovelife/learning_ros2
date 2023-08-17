@@ -9,6 +9,7 @@ class TurtlesimPath:
     Line   = "line"
     Square = "square"
     Circle = "circle"
+    Triangle = "triangle"
 
 class MoveTurtlesomClient(Node):
     def __init__(self, node_name: str="move_turtlesim_client_node"):
@@ -25,6 +26,7 @@ class MoveTurtlesomClient(Node):
         self.call_service_async(path=TurtlesimPath.Line)
         self.call_service_async(path=TurtlesimPath.Square)
         self.call_service_async(path=TurtlesimPath.Circle)
+        self.call_service_async(path=TurtlesimPath.Triangle)
 
     def call_service_async(self, path: str):
         request = MoveTurtlesim.Request()

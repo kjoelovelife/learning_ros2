@@ -10,6 +10,7 @@ class TurtlesimPath:
     Line   = "line"
     Square = "square"
     Circle = "circle"
+    Triangle = "triangle"
 
 class MoveTurtlesimServer(Node):
     def __init__(self, node_name: str="move_turtlesim_server_node"):
@@ -45,6 +46,8 @@ class MoveTurtlesimServer(Node):
             self.turtlesim_move_square()
         elif path == TurtlesimPath.Circle:
             self.turtlesim_move_circle()
+        elif path == TurtlesimPath.Triangle:
+            self.turtlesim_move_triangle()
         else:
             self.turtlesim_stop()
             response.successful = False
@@ -84,6 +87,20 @@ class MoveTurtlesimServer(Node):
             self._publisher.publish(self._twist)
             self.sleep()
         self.turtlesim_stop()
+
+    def turtlesim_move_triangle(self):
+        for index in range(3):
+            self._twist.linear.x  = 0.0
+            self._twist.angular.z = -math.pi / 4 - (math.pi / 4 * index)
+            self._publisher.publish(self._twist)
+            self.sleep()
+            self._twist.linear.x  = 2.0
+            self._twist.angular.z = 0.0
+            self._publisher.publish(self._twist)
+            self.sleep()
+
+
+
 
     def turtlesim_move_specific_path(self):
         pass
