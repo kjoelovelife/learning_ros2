@@ -70,7 +70,6 @@ a   s   d
 w/x: moving the turtle forward/backward
 a/d: turning the turtle left/right
 s  : force stop the turtle
-
 """
     try:
         print(msg)
