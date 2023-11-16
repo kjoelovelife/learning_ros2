@@ -14,13 +14,13 @@ def generate_launch_description() -> LaunchDescription:
         output="screen"
     )
 
-    remap_topic = [("get_parameters", f"/{turtlesim_node_name}/get_parameters"),]
+    remap_services = [("get_parameters", f"/{turtlesim_node_name}/get_parameters"),]
     get_turtlesim_background_instance = Node(
         package=THIS_PACKAGE,
         name="get_turtlesim_background_node",
         executable="get_turtlesim_background_exe",
         output="screen",
-        remappings=remap_topic
+        remappings=remap_services
     )
 
     rqt_reconfigure_node = Node(
