@@ -23,7 +23,7 @@ class GetTurtlesimBackground(Node):
             TurtlesimBackgroundName.BackgroundG: 1,
             TurtlesimBackgroundName.BackgroundR: 2,
         } 
-        self.__get_background_parameter_client = self.customic_creat_clinet(
+        self.__get_background_parameter_client = self.customic_create_clinet(
             service_type=GetParameters,
             service_name="get_parameters"
         )
@@ -33,7 +33,7 @@ class GetTurtlesimBackground(Node):
             callback=self.callback_timer
         )
 
-    def customic_creat_clinet(self, service_type: Any, service_name: str) -> Client:
+    def customic_create_clinet(self, service_type: Any, service_name: str) -> Client:
         client = self.create_client(
             srv_type=service_type,
             srv_name=service_name
