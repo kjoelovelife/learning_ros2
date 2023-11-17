@@ -87,7 +87,7 @@ class SetTurtleVelocity(Node):
         try:
             response: SetParametersAtomically.Response = future.result()
             if response.result.successful:
-                self.get_logger().info(f"Now the turtle's speed is {self.__velocity} m/s")
+                self.get_logger().info(f"Now the turtle's speed is {self.__velocity:.3f} m/s")
         except Exception as error:
             self.get_logger().error(f"Could not set the turtle's speed! {error}")
             sys.exit(1)
