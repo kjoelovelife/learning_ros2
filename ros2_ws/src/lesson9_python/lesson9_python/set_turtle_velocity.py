@@ -62,7 +62,8 @@ class SetTurtleVelocity(Node):
         except Exception as error:
             self.get_logger().error(f"Call service failed. {error}")
             sys.exit(1)
-        velocity_parameter_descriptor: ParameterDescriptor = response.descriptors[self.__request_parameter_dict["velocity"]]
+        velocity_parameter_descriptor: ParameterDescriptor = \
+            response.descriptors[self.__request_parameter_dict["velocity"]]
         velocity_range: FloatingPointRange = velocity_parameter_descriptor.floating_point_range[0]
         self.__velocity_upper_bound = velocity_range.to_value
         self.__velocity_lower_bound = velocity_range.from_value
