@@ -21,14 +21,14 @@ class SetTurtleVelocity(Node):
         self.__velocity_lower_bound = 0.0
         self.__velocity = 0.0
  
-        self.__get_describe_parameters_client = self.customic_creat_clinet(
+        self.__get_describe_parameters_client = self.customic_create_clinet(
             service_type=DescribeParameters,
             service_name="describe_parameters"
         )
         self.__request_parameter_dict = {"velocity": 0}
         self.set_velocity_bound(self.__get_describe_parameters_client, self.__request_parameter_dict)
         
-        self.__set_turtle_velocty_client = self.customic_creat_clinet(
+        self.__set_turtle_velocty_client = self.customic_create_clinet(
             service_type=SetParametersAtomically,
             service_name="set_parameters_atomically"
         )
@@ -40,7 +40,7 @@ class SetTurtleVelocity(Node):
             callback=self.callback_timer
         )
 
-    def customic_creat_clinet(self, service_type: Any, service_name: str) -> Client:
+    def customic_create_clinet(self, service_type: Any, service_name: str) -> Client:
         client = self.create_client(
             srv_type=service_type,
             srv_name=service_name
