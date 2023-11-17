@@ -39,10 +39,17 @@ def generate_launch_description() -> LaunchDescription:
         remappings=remap_topic_service
     )
 
+    rqt_reconfigure_node = Node(
+        package="rqt_reconfigure",
+        name="rqt_reconfigure",
+        executable="rqt_reconfigure",
+        output="screen"
+    )
+
     launch_description = LaunchDescription()
     action_list = [
         turtlesim_instance, turtle_draw_circle_with_parameter_instance,
-        final_exam_instance
+        final_exam_instance, rqt_reconfigure_node
     ]
     for action in action_list:
         launch_description.add_action(action)
