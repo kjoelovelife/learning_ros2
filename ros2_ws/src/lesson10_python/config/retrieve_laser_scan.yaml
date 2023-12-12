@@ -1,0 +1,3 @@
+retrieve_laser_scan_node:
+  ros__parameters:
+    scan_angle_range: 150.0
