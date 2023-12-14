@@ -8,7 +8,6 @@ THIS_PACKAGE = "lesson10_python"
 
 def generate_launch_description() -> LaunchDescription:
 
-    remap_topic = [("scan", "/autorideTB3/front_right_scan")]
     retrieve_laser_scan_yaml = os.path.join(
         get_package_share_directory(THIS_PACKAGE),
         "config",
@@ -19,12 +18,10 @@ def generate_launch_description() -> LaunchDescription:
         name="retrieve_laser_scan_node",
         executable="retrieve_laser_scan_exe",
         output="screen",
-        remappings=remap_topic,
         parameters=[retrieve_laser_scan_yaml]
     )
 
     teleop_twist_keyboard = Node(
-        namespace="autorideTB3",
         package="teleop_twist_keyboard",
         name="teleop_twist_keyboard",
         executable="teleop_twist_keyboard",
