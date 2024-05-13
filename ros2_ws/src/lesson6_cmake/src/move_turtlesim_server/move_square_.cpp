@@ -13,31 +13,27 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 * Reference : https://google.github.io/styleguide/cppguide.html#Class_Format
 *******************************************************************************/
 
 #include "lesson6_cmake/move_turtlesim_server.hpp"
 
-void MoveTurtlesimServer::callback_service(
-    const lesson_interfaces::srv::MoveTurtlesim::Request::SharedPtr request_ptr, 
-    const lesson_interfaces::srv::MoveTurtlesim::Response::SharedPtr response_ptr){
+void MoveTurtlesimServer::move_square_() {
+  
+  RCLCPP_INFO_STREAM(this->get_logger(), "Moving around a square!");
 
-  std::string path = request_ptr->path;
-
-  if (path == this->turtlesim_path_.LINE)
-    this->move_line();
-  else if (path == this->turtlesim_path_.SQUARE)
-    this->move_square();
-  else if (path == this->turtlesim_path_.CIRCLE)
-    this->move_circle();
-  else if (path == this->turtlesim_path_.TRIANGLE)
-    this->move_triangle();
-  else {
-    RCLCPP_WARN_STREAM(this->get_logger(), "Wrong path!");
-    this->stop();
+  for (int number = 0; number < 4; number++) {
+    this->twist_.linear.x = 2.0;
+    this->twist_.angular.z = 0.0;
+    this->publisher_->publish(this->twist_);
+    rclcpp::sleep_for(std::chrono::milliseconds(1000));
+    
+    this->twist_.linear.x = 0.0;
+    this->twist_.angular.z = M_PI_2;
+    this->publisher_->publish(this->twist_);
+    rclcpp::sleep_for(std::chrono::milliseconds(1000));
   }
-
-  response_ptr->successful = true;
-
+  
+  this->stop_();
 }

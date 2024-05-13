@@ -13,22 +13,20 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady guo
 * Reference : https://google.github.io/styleguide/cppguide.html#Class_Format
 *******************************************************************************/
 
 #include "lesson6_cmake/move_turtlesim_server.hpp"
 
-void MoveTurtlesimServer::move_circle() {
-  
-  RCLCPP_INFO_STREAM(this->get_logger(), "Moving around a circle!");
+MoveTurtlesimServer::MoveTurtlesimServer(std::string node_name)
+        : Node(node_name) {
 
-  for (int number = 0; number < 5; number++) {
-    this->twist_.linear.x = 1.0;
-    this->twist_.angular.z = M_PI_2;
-    this->publisher_->publish(this->twist_);
-    rclcpp::sleep_for(std::chrono::milliseconds(1000));
-  }
-
-  this->stop();
+    RCLCPP_INFO_STREAM(this->get_logger(), "Initializing...");
+    this->service_ = this->create_service<lesson_interfaces::srv::MoveTurtlesim> (
+        this->service_name_,
+        std::bind(&MoveTurtlesimServer::callback_service_, this, std::placeholders::_1, std::placeholders::_2)
+    );
+    this->publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("turtle1/cmd_vel", 10);
+    RCLCPP_INFO_STREAM(this->get_logger(), "Initialized!!");
 }

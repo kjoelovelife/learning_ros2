@@ -13,27 +13,31 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady guo
 * Reference : https://google.github.io/styleguide/cppguide.html#Class_Format
 *******************************************************************************/
 
 #include "lesson6_cmake/move_turtlesim_server.hpp"
 
-void MoveTurtlesimServer::move_triangle() {
-  
-  RCLCPP_INFO_STREAM(this->get_logger(), "Moving around a triangle!");
+void MoveTurtlesimServer::callback_service_(
+    const lesson_interfaces::srv::MoveTurtlesim::Request::SharedPtr request_ptr, 
+    const lesson_interfaces::srv::MoveTurtlesim::Response::SharedPtr response_ptr) {
 
-  for (int number = 0; number < 3; number++) {
-    this->twist_.linear.x = 0.0;
-    this->twist_.angular.z = -M_PI_4 - (M_PI_4*number);
-    this->publisher_->publish(this->twist_);
-    rclcpp::sleep_for(std::chrono::milliseconds(1000));
+  std::string path = request_ptr->path;
 
-    this->twist_.linear.x = 2.0;
-    this->twist_.angular.z = 0.0;
-    this->publisher_->publish(this->twist_);
-    rclcpp::sleep_for(std::chrono::milliseconds(1000));
+  if (path == this->turtlesim_path_.LINE)
+    this->move_line_();
+  else if (path == this->turtlesim_path_.SQUARE)
+    this->move_square_();
+  else if (path == this->turtlesim_path_.CIRCLE)
+    this->move_circle_();
+  else if (path == this->turtlesim_path_.TRIANGLE)
+    this->move_triangle_();
+  else {
+    RCLCPP_WARN_STREAM(this->get_logger(), "Wrong path!");
+    this->stop_();
   }
-  
-  this->stop();
+
+  response_ptr->successful = true;
+
 }

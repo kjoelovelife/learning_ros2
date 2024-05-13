@@ -13,27 +13,23 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 * Reference : https://google.github.io/styleguide/cppguide.html#Class_Format
 *******************************************************************************/
 
 #include "lesson6_cmake/move_turtlesim_server.hpp"
 
-void MoveTurtlesimServer::move_square() {
+void MoveTurtlesimServer::move_line_() {
   
-  RCLCPP_INFO_STREAM(this->get_logger(), "Moving around a square!");
+  RCLCPP_INFO_STREAM(this->get_logger(), "Moving along with a line!");
 
-  for (int number = 0; number < 4; number++) {
-    this->twist_.linear.x = 2.0;
-    this->twist_.angular.z = 0.0;
-    this->publisher_->publish(this->twist_);
-    rclcpp::sleep_for(std::chrono::milliseconds(1000));
-    
-    this->twist_.linear.x = 0.0;
-    this->twist_.angular.z = M_PI_2;
+  this->twist_.linear.x  = 0.2;
+  this->twist_.angular.z = 0.0;
+  
+  for (int number = 0; number < 5; number++) {
     this->publisher_->publish(this->twist_);
     rclcpp::sleep_for(std::chrono::milliseconds(1000));
   }
   
-  this->stop();
+  this->stop_();
 }

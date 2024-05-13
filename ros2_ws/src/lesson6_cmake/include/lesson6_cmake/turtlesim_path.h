@@ -13,19 +13,18 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 *******************************************************************************/
 #ifndef TURTLESIM_PATH__HPP_
 #define TURTLESIM_PATH__HPP_
 
 #include <string>
 
-struct TurtlesimPath {
-    std::string LINE     = "line",
-                SQUARE   = "square",
-                CIRCLE   = "circle",
-                TRIANGLE = "triangle";
-
+namespace TurtlesimPath {
+std::string LINE = "line",
+            SQUARE   = "square",
+            CIRCLE   = "circle",
+            TRIANGLE = "triangle";
 };
 
 #endif 

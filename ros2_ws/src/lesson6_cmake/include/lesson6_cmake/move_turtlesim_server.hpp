@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 * Reference : https://google.github.io/styleguide/cppguide.html#Class_Format
 *******************************************************************************/
 #ifndef MOVE_TURTLESIM_SERVER__HPP_
@@ -26,45 +26,27 @@
 #include <lesson_interfaces/srv/move_turtlesim.hpp>
 #include "turtlesim_path.hpp"
 
-class MoveTurtlesimServer: public rclcpp::Node{
+class MoveTurtlesimServer: public rclcpp::Node {
  public:
-  MoveTurtlesimServer(std::string node_name="move_turtlesim_server_node"): Node(node_name) {
-    RCLCPP_INFO_STREAM(this->get_logger(), "Initializing...");
-    this->service_ = this->create_service<lesson_interfaces::srv::MoveTurtlesim>(
-        this->service_name_,
-        std::bind(
-            &MoveTurtlesimServer::callback_service,
-            this,
-            std::placeholders::_1,
-            std::placeholders::_2
-        )
-    );
-
-    this->publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
-    RCLCPP_INFO_STREAM(this->get_logger(), "Initialized!!");
-  }
+    MoveTurtlesimServer(std::string node_name="move_turtlesim_server_node");
 
  private:
-  geometry_msgs::msg::Twist twist_;
-  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_;
-  rclcpp::Service<lesson_interfaces::srv::MoveTurtlesim>::SharedPtr service_;
-  std::string service_name_ {"move_turtlesim"};
-  TurtlesimPath turtlesim_path_;
+    void callback_service_(
+      const lesson_interfaces::srv::MoveTurtlesim::Request::SharedPtr request_ptr, 
+      const lesson_interfaces::srv::MoveTurtlesim::Response::SharedPtr response_ptr);
 
+    void move_line_();
+    void move_square_();
+    void move_circle_();
+    void move_triangle_();
+    void stop_();
 
-  void callback_service(
-    const lesson_interfaces::srv::MoveTurtlesim::Request::SharedPtr request_ptr, 
-    const lesson_interfaces::srv::MoveTurtlesim::Response::SharedPtr response_ptr);
+    geometry_msgs::msg::Twist twist_;
+    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_;
+    rclcpp::Service<lesson_interfaces::srv::MoveTurtlesim>::SharedPtr service_;
+    std::string service_name_ {"move_turtlesim"};
 
-  void move_line();
-  void move_square();
-  void move_circle();
-  void move_triangle();
-  void stop();
 };
-
-
-
 
 
 #endif // MOVE_TURTLESIM_SERVER__HPP_

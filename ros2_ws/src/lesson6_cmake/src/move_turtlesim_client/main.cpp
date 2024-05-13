@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 *******************************************************************************/
 
 #include "lesson6_cmake/move_turtlesim_client.hpp"
@@ -21,9 +21,7 @@
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);    
-
-    TurtlesimPath turtlesim_path {};
-    rclcpp::Node::SharedPtr node = std::make_shared<MoveTurtlesimClient>("move_turtlesim_client_node", turtlesim_path.SQUARE);
+    std::shared_ptr<TeleopInTerminal> node = std::make_shared<TeleopInTerminal>("move_turtlesim_client_node");
     rclcpp::shutdown();
     return 0;
 }

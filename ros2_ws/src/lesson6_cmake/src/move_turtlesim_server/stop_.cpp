@@ -10,26 +10,20 @@
 * Unless required by applicable law or agreed to in writing, software
 * distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
+* See the License for the specific language governing permissons and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 * Reference : https://google.github.io/styleguide/cppguide.html#Class_Format
 *******************************************************************************/
 
 #include "lesson6_cmake/move_turtlesim_server.hpp"
 
-void MoveTurtlesimServer::move_line() {
+void MoveTurtlesimServer::stop_() {
   
-  RCLCPP_INFO_STREAM(this->get_logger(), "Moving along with a line!");
-
-  this->twist_.linear.x  = 0.2;
+  RCLCPP_INFO_STREAM(this->get_logger(), "Stop the turtlesim!");
+  this->twist_.linear.x = 0.0;
   this->twist_.angular.z = 0.0;
+  this->publisher_->publish(this->twist_);
   
-  for (int number = 0; number < 5; number++) {
-    this->publisher_->publish(this->twist_);
-    rclcpp::sleep_for(std::chrono::milliseconds(1000));
-  }
-  
-  this->stop();
 }

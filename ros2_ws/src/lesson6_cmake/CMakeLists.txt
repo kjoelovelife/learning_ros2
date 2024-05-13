@@ -24,39 +24,43 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+
 # include 
 include_directories(include)
 
 # add executable
-## move_turtlesim_server_exe
-add_executable(move_turtlesim_server_exe
-  src/move_turtlesim_server/callback_service.cpp
-  src/move_turtlesim_server/main.cpp
-  src/move_turtlesim_server/move_circle.cpp
-  src/move_turtlesim_server/move_line.cpp
-  src/move_turtlesim_server/move_square.cpp
-  src/move_turtlesim_server/move_triangle.cpp
-  src/move_turtlesim_server/stop.cpp
-)
-
-ament_target_dependencies(move_turtlesim_server_exe rclcpp geometry_msgs lesson_interfaces)
 
 ## move_turtlesim_client_exe
-add_executable(move_turtlesim_client_exe
-  src/move_turtlesim_client/main.cpp
+set(progress_name move_turtlesim_client)
+add_executable(${progress_name}_exe
+  src/${progress_name}/main.cpp
+  src/${progress_name}/teleop_in_terminal.cpp
 )
 
-ament_target_dependencies(move_turtlesim_client_exe rclcpp lesson_interfaces)
+ament_target_dependencies(${progress_name}_exe rclcpp lesson_interfaces)
+
+## move_turtlesim_server_exe
+set(progress_name move_turtlesim_server)
+add_executable(move_turtlesim_server_exe
+  src/${progress_name}/callback_service_.cpp
+  src/${progress_name}/main.cpp
+  src/${progress_name}/move_circle_.cpp
+  src/${progress_name}/move_line_.cpp
+  src/${progress_name}/move_square_.cpp
+  src/${progress_name}/move_triangle_.cpp
+  src/${progress_name}/stop_.cpp
+)
+
+ament_target_dependencies(${progress_name}_exe rclcpp geometry_msgs lesson_interfaces)
 
 # install program
 install(TARGETS
-  move_turtlesim_server_exe
   move_turtlesim_client_exe
+  move_turtlesim_server_exe
   DESTINATION lib/${PROJECT_NAME}
 )
 
-
-# install directory
+# install directory launch
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}/

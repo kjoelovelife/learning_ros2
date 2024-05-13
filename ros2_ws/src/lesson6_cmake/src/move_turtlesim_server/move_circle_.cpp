@@ -13,32 +13,22 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Brady Guo
+* Maintainer: Joe Lin
 * Reference : https://google.github.io/styleguide/cppguide.html#Class_Format
 *******************************************************************************/
-#ifndef MOVE_TURTLESIM_CLIENT__HPP_
-#define MOVE_TURTLESIM_CLIENT__HPP_
 
-#include <chrono>
-#include <memory>
-#include <vector>
-#include <rclcpp/rclcpp.hpp>
-#include <lesson_interfaces/srv/move_turtlesim.hpp>
-#include "turtlesim_path.h"
+#include "lesson6_cmake/move_turtlesim_server.hpp"
 
-class TeleopInTerminal: public rclcpp::Node {
- public:
-    TeleopInTerminal(std::string node_name="move_turtlesim_client_node");
+void MoveTurtlesimServer::move_circle_() {
+  
+  RCLCPP_INFO_STREAM(this->get_logger(), "Moving around a circle!");
 
- private:
-    rclcpp::Client<lesson_interfaces::srv::MoveTurtlesim>::SharedPtr client_;      
-    std::string service_name_ {"move_turtlesim"};
-    std::vector<std::string> paths_ {
-      TurtlesimPath::LINE,
-      TurtlesimPath::SQUARE,
-      TurtlesimPath::CIRCLE,
-      TurtlesimPath::TRIANGLE
-    };
-};
+  for (int number = 0; number < 5; number++) {
+    this->twist_.linear.x = 1.0;
+    this->twist_.angular.z = M_PI_2;
+    this->publisher_->publish(this->twist_);
+    rclcpp::sleep_for(std::chrono::milliseconds(1000));
+  }
 
-#endif // MOVE_TURTLESIM_SERVER__HPP_
+  this->stop_();
+}

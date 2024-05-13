@@ -4,13 +4,12 @@
   <name>lesson6_cmake</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="joe_lin@brogent.com">ros</maintainer>
+  <maintainer email="a800608a@gmail.com">vboxuser</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>rclcpp</depend>
-  <depend>std_srvs</depend>
   <depend>geometry_msgs</depend>
   <depend>lesson_interfaces</depend>
 
