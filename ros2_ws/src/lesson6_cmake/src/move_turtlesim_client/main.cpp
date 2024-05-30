@@ -21,7 +21,7 @@
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);    
-    std::shared_ptr<TeleopInTerminal> node = std::make_shared<TeleopInTerminal>("move_turtlesim_client_node");
+    rclcpp::Node::SharedPtr node = std::make_shared<MoveTurtlesimClient>("move_turtlesim_client_node");
     rclcpp::shutdown();
     return 0;
 }

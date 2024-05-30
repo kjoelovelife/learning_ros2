@@ -1,0 +1,26 @@
+/*******************************************************************************
+* Copyright 2024 BROGENT TECHNOLOGIES INC.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+* Author    : Brady Guo
+* Maintainer: Brady Guo
+*******************************************************************************/
+
+#include "lesson8_cmake/catch_the_turtle.hpp"
+
+// using undersocre and type name after parameter name
+// Code line under 20 may consider put inside the header file
+void CatchTheTurtle::callback_turtle_pose_(const turtlesim::msg::Pose::SharedPtr msg){
+    this->pose_ = *msg.get();
+    this->get_turtle_pose_ = true;
+}

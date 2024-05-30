@@ -24,7 +24,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/twist.hpp>
 #include <lesson_interfaces/srv/move_turtlesim.hpp>
-#include "turtlesim_path.hpp"
+#include "turtlesim_path.h"
 
 class MoveTurtlesimServer: public rclcpp::Node {
  public:

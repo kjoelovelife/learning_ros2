@@ -28,35 +28,37 @@ endif()
 # include 
 include_directories(include)
 
+set(ProjectName move_turtlesim_server)
+
 # add executable
-
-## move_turtlesim_client_exe
-set(progress_name move_turtlesim_client)
-add_executable(${progress_name}_exe
-  src/${progress_name}/main.cpp
-  src/${progress_name}/teleop_in_terminal.cpp
-)
-
-ament_target_dependencies(${progress_name}_exe rclcpp lesson_interfaces)
-
 ## move_turtlesim_server_exe
-set(progress_name move_turtlesim_server)
 add_executable(move_turtlesim_server_exe
-  src/${progress_name}/callback_service_.cpp
-  src/${progress_name}/main.cpp
-  src/${progress_name}/move_circle_.cpp
-  src/${progress_name}/move_line_.cpp
-  src/${progress_name}/move_square_.cpp
-  src/${progress_name}/move_triangle_.cpp
-  src/${progress_name}/stop_.cpp
+  src/${ProjectName}/move_turtlesim_server.cpp
+  src/${ProjectName}/callback_service_.cpp
+  src/${ProjectName}/main.cpp
+  src/${ProjectName}/move_circle_.cpp
+  src/${ProjectName}/move_line_.cpp
+  src/${ProjectName}/move_square_.cpp
+  src/${ProjectName}/move_triangle_.cpp
+  src/${ProjectName}/stop_.cpp
 )
 
-ament_target_dependencies(${progress_name}_exe rclcpp geometry_msgs lesson_interfaces)
+ament_target_dependencies(move_turtlesim_server_exe rclcpp geometry_msgs lesson_interfaces)
+
+
+set(ProjectName move_turtlesim_client)
+## move_turtlesim_client_exe
+add_executable(move_turtlesim_client_exe
+  src/${ProjectName}/move_turtlesim_client.cpp
+  src/${ProjectName}/main.cpp
+)
+
+ament_target_dependencies(move_turtlesim_client_exe rclcpp lesson_interfaces)
 
 # install program
 install(TARGETS
-  move_turtlesim_client_exe
   move_turtlesim_server_exe
+  move_turtlesim_client_exe
   DESTINATION lib/${PROJECT_NAME}
 )
 

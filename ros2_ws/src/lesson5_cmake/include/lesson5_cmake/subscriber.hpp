@@ -13,29 +13,21 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 *******************************************************************************/
 #ifndef SUBSCRIBER__HPP_
 #define SUBSCRIBER__HPP_
 
-#include <chrono>
+#include <string>
 #include <rclcpp/rclcpp.hpp>
 #include "lesson_interfaces/msg/lunch.hpp"
 
 /**
  * @class Subscriber
- * @brief Subscribe "launch_info" topic
+ * @brief Subscribe "publishe_test" topic
 */
 class Subscriber: public rclcpp::Node
 {
-private:
-    rclcpp::Subscription<lesson_interfaces::msg::Lunch>::SharedPtr __subscription_ptr;
-
-    /**
-     * @brief publish topic
-    */
-    void __callback_lunch_info(const lesson_interfaces::msg::Lunch::SharedPtr msg);
-
 public:
 
     /**
@@ -43,12 +35,22 @@ public:
     */
     Subscriber(const std::string node_name="subscriber_node"): Node(node_name)
     {
-        this->__subscription_ptr = this->create_subscription<lesson_interfaces::msg::Lunch>(
+        this->subscription_ptr_ = this->create_subscription<lesson_interfaces::msg::Lunch>(
             "lunch_info", 
             10,
-            std::bind(&Subscriber::__callback_lunch_info, this, std::placeholders::_1)
+            std::bind(&Subscriber::callback_lunch_info_, this, std::placeholders::_1)
         );
     }
+
+private:
+    rclcpp::Subscription<lesson_interfaces::msg::Lunch>::SharedPtr subscription_ptr_;
+
+    /**
+     * @brief publish topic
+    */
+    void callback_lunch_info_(const lesson_interfaces::msg::Lunch::SharedPtr msg_ptr);
+
+
 
 };
 

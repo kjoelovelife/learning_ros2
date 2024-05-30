@@ -13,9 +13,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 *******************************************************************************/
-
 #include "lesson5_cmake/publisher.hpp"
 
 int main(int argc, char *argv[])

@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 *******************************************************************************/
 #ifndef COLOR__HPP_
 #define COLOR__HPP_
@@ -30,13 +30,15 @@ enum class ColorIndex: int
 
 class ColorStorer
 {
-private:
-    std::vector<double> __purple = {106.0, 90.0, 205.0, 1.0};
-
 public:
     ColorStorer() = default;
     ~ColorStorer() = default;
-    std::vector<double> get_purple_vector(){return this->__purple;}
+    std::vector<double> get_purple_vector(){return this->purple_;}
+
+private:
+    std::vector<double> purple_ = {106.0, 90.0, 205.0, 1.0};
+
+
 };
 
 #endif // COLOR__HPP_

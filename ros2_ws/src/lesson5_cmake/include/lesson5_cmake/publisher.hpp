@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 *******************************************************************************/
 #ifndef PUBLISHER__HPP_
 #define PUBLISHER__HPP_
@@ -24,41 +24,55 @@
 #include "color.hpp"
 #include "lesson_interfaces/msg/lunch.hpp"
 
-class Publisher: public rclcpp::Node 
-{
-private:
-    ColorStorer __color_storer {};
-    lesson_interfaces::msg::Lunch __launch;
-    rclcpp::Publisher<lesson_interfaces::msg::Lunch>::SharedPtr __publisher;
-    rclcpp::TimerBase::SharedPtr __timer;
-    std::vector<double> __purple_vector {};
+/**
+ * @class Publisher
+ * @brief publish std_msgs/String message with timer for testing
+*/
 
-    void __callback_wall_timer();
+class Publisher: public rclcpp::Node
+{
 
 public:
 
-    Publisher(const std::string node_name="publisher_node"): Node(node_name){
-        this->__publisher = this->create_publisher<lesson_interfaces::msg::Lunch>("lunch_info", 10);
-        this->__timer     = this->create_wall_timer(
-            std::chrono::milliseconds(1000),
-            std::bind(&Publisher::__callback_wall_timer, this)
-        );
-
-        this->__launch.bowls_of_rice = 5;
-        this->__purple_vector = this->__color_storer.get_purple_vector();
-        this->__launch.color_of_bowls.r = this->__purple_vector.at(int(ColorIndex::RED));
-        this->__launch.color_of_bowls.g = this->__purple_vector.at(int(ColorIndex::GREEN));
-        this->__launch.color_of_bowls.b = this->__purple_vector.at(int(ColorIndex::BLUE));
-        this->__launch.color_of_bowls.a = this->__purple_vector.at(int(ColorIndex::ALPHA));
+    /**
+     * @brief constructor
+    */
+    Publisher(const std::string node_name="publisher_node"): Node(node_name)
+    {
+        
+        this->lunch_.bowls_of_rice = 5;
+        this->purple_vector_ = this->color_storer_.get_purple_vector();
+        this->lunch_.color_of_bowls.r = this->purple_vector_.at(int(ColorIndex::RED));
+        this->lunch_.color_of_bowls.g = this->purple_vector_.at(int(ColorIndex::GREEN));
+        this->lunch_.color_of_bowls.b = this->purple_vector_.at(int(ColorIndex::BLUE));
+        this->lunch_.color_of_bowls.a = this->purple_vector_.at(int(ColorIndex::ALPHA));
 
         std::vector<std::string> meats {"fish", "pork"};
-        this->__launch.meats = meats;
+        this->lunch_.meats = meats;
 
         std::vector<std::string> vegetables {"spinach", "tomato"};
-        this->__launch.vegetables = vegetables;
-    };
+        this->lunch_.vegetables = vegetables;
+
+        this->publisher_ptr_ = this->create_publisher<lesson_interfaces::msg::Lunch>("lunch_info", 10);
+        this->timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(1000),
+            std::bind(&Publisher::callback_wall_timer_, this)
+        );
+    }
+
+private:
+
+    ColorStorer color_storer_ {};
+    rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Publisher<lesson_interfaces::msg::Lunch>::SharedPtr publisher_ptr_;
+    lesson_interfaces::msg::Lunch lunch_;
+    std::vector<double> purple_vector_ {};
+        
+    /**
+     * @brief publish topic
+    */
+    void callback_wall_timer_();
 
 };
-
 
 #endif // PUBLISHER__HPP_

@@ -13,8 +13,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 *******************************************************************************/
+
 #ifndef SUBSCRIBER__HPP_
 #define SUBSCRIBER__HPP_
 
@@ -28,14 +29,6 @@
 */
 class Subscriber: public rclcpp::Node
 {
-private:
-    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr __subscription_ptr;
-
-    /**
-     * @brief publish topic
-    */
-    void __callback_publish_test(const std_msgs::msg::String::SharedPtr msg);
-
 public:
 
     /**
@@ -43,12 +36,21 @@ public:
     */
     Subscriber(const std::string node_name="subscriber_node"): Node(node_name)
     {
-        this->__subscription_ptr = this->create_subscription<std_msgs::msg::String>(
+        this->subscription_ptr_ = this->create_subscription<std_msgs::msg::String>(
             "publish_test", 
             10,
-            std::bind(&Subscriber::__callback_publish_test, this, std::placeholders::_1)
+            std::bind(&Subscriber::callback_publish_test_, this, std::placeholders::_1)
         );
     }
+
+private:
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_ptr_;
+
+    /**
+     * @brief publish topic
+    */
+    void callback_publish_test_(const std_msgs::msg::String::SharedPtr msg);
+
 
 };
 

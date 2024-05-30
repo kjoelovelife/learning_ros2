@@ -13,8 +13,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 * Author    : Joe Lin
-* Maintainer: Joe Lin
+* Maintainer: Brady Guo
 *******************************************************************************/
+
 #ifndef PUBLISHER__HPP_
 #define PUBLISHER__HPP_
 
@@ -32,16 +33,6 @@
 */
 class Publisher: public rclcpp::Node
 {
-private:
-    int __counter = 0;
-    rclcpp::TimerBase::SharedPtr __timer;
-    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr __publisher_ptr;
-
-    /**
-     * @brief publish topic
-    */
-    void __callback_wall_timer();
-
 public:
 
     /**
@@ -49,12 +40,22 @@ public:
     */
     Publisher(const std::string node_name="publisher_node"): Node(node_name)
     {
-        this->__publisher_ptr = this->create_publisher<std_msgs::msg::String>("publish_test", 10);
-        this->__timer = this->create_wall_timer(
+        this->publisher_ptr_ = this->create_publisher<std_msgs::msg::String>("publish_test", 10);
+        this->timer_ = this->create_wall_timer(
             std::chrono::milliseconds(1000),
-            std::bind(&Publisher::__callback_wall_timer, this)
+            std::bind(&Publisher::callback_wall_timer_, this)
         );
     }
+
+private:
+    int counter_ = 0;
+    rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_ptr_;
+
+    /**
+     * @brief publish topic
+    */
+    void callback_wall_timer_();
 
 };
 

@@ -20,25 +20,25 @@
 #define MOVE_TURTLESIM_CLIENT__HPP_
 
 #include <chrono>
-#include <memory>
 #include <vector>
 #include <rclcpp/rclcpp.hpp>
 #include <lesson_interfaces/srv/move_turtlesim.hpp>
 #include "turtlesim_path.h"
 
-class TeleopInTerminal: public rclcpp::Node {
+class MoveTurtlesimClient: public rclcpp::Node{
  public:
-    TeleopInTerminal(std::string node_name="move_turtlesim_client_node");
-
+    MoveTurtlesimClient(std::string node_name="move_turtlesim_client_node");
+    
  private:
-    rclcpp::Client<lesson_interfaces::srv::MoveTurtlesim>::SharedPtr client_;      
-    std::string service_name_ {"move_turtlesim"};
-    std::vector<std::string> paths_ {
+   rclcpp::Client<lesson_interfaces::srv::MoveTurtlesim>::SharedPtr client_;      
+   std::string service_name_ {"move_turtlesim"};
+   std::vector<std::string> paths_ { 
       TurtlesimPath::LINE,
       TurtlesimPath::SQUARE,
       TurtlesimPath::CIRCLE,
       TurtlesimPath::TRIANGLE
     };
 };
+
 
 #endif // MOVE_TURTLESIM_SERVER__HPP_

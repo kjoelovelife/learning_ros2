@@ -11,6 +11,7 @@ find_package(rclcpp REQUIRED)
 find_package(lesson_interfaces REQUIRED)
 find_package(std_msgs REQUIRED)
 
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -23,37 +24,34 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# include 
 include_directories(include)
 
 # add executable
 ## publisher_exe
 add_executable(publisher_exe 
-  src/publisher/__callback_wall_timer.cpp
+  src/publisher/callback_wall_timer_.cpp
   src/publisher/main.cpp
 )
-
 ament_target_dependencies(publisher_exe rclcpp std_msgs lesson_interfaces)
 
 ## subscriber_exe
 add_executable(subscriber_exe
-  src/subscriber/__callback_lunch_info.cpp
+  src/subscriber/callback_lunch_info_.cpp
   src/subscriber/main.cpp
 )
+ament_target_dependencies(subscriber_exe rclcpp std_msgs lesson_interfaces)
 
-ament_target_dependencies(subscriber_exe rclcpp lesson_interfaces)
-
-# install program
+# executable
 install(TARGETS
   publisher_exe
   subscriber_exe
   DESTINATION lib/${PROJECT_NAME}
 )
 
-# install directory
+# launch
 install(DIRECTORY
   launch
-  DESTINATION share/${PROJECT_NAME}/
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ament_package()
