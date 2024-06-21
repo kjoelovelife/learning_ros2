@@ -20,12 +20,14 @@
 
 #include <string>
 
-namespace TurtlesimPath {
-    inline std::string LINE     = "line",
-                       SQUARE   = "square",
-                       CIRCLE   = "circle",
-                       TRIANGLE = "triangle";
-
+class TurtlesimPath {
+  public:
+    static const std::string LINE = "line";
+    static const std::string SQUARE = "line";
+    static const std::string CIRCLE = "line";
+    static const std::string TRIANGLE = "line";
 };
+
+
 
 #endif 

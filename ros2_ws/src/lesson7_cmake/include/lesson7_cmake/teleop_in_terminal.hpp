@@ -32,21 +32,26 @@
 
 class TeleopInTerminal: public rclcpp::Node{
  public:
-  TeleopInTerminal(std::string node_name="teleop_in_terminal_node");
 
+  TeleopInTerminal(std::string node_name="teleop_in_terminal_node"): Node(node_name) {
+    this->cmd_vel_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/turtle1/cmd_vel",10);
+
+    RCLCPP_INFO_STREAM(this->get_logger(),this->msg_.c_str());
+  }
+
+    int  get_key();
+    void forward();
+    void backward();
+    void turn_left();
+    void turn_right();
+    void stop();
 
  private:
 
-    int  get_key_();
-    void forward_();
-    void backward_();
-    void turn_left_();
-    void turn_right_();
-    void stop_();
+
 
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_publisher_;      
     geometry_msgs::msg::Twist twist_;
-    char key_ = ' ';
     std::string msg_ = R"(
 Control the Turtle!
 -------------------------

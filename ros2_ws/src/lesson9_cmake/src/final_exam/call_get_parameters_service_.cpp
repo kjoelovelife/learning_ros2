@@ -34,12 +34,12 @@ void FinalExam::call_get_parameters_service_(std::vector<std::string> velocity_n
         if (this->velocity_ == velocity_from_parameter_server.double_value){
             this->has_to_change_color_ = false;
         }
-        else{
+        else {
             this->has_to_change_color_ = true;
             this->velocity_ = velocity_from_parameter_server.double_value;
         }
     }
-    catch (const std::exception &e){
+    catch (const std::exception& e){
         RCLCPP_ERROR(this->get_logger(), "Get Parameters Service call failed.");
     }
     

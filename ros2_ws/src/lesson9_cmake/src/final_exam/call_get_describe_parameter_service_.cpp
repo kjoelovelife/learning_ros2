@@ -16,14 +16,12 @@
 * Maintainer: Brady Guo
 *******************************************************************************/
 
-
 #include "lesson9_cmake/final_exam.hpp"
-
 
 void FinalExam::call_get_describe_parameter_service_(std::vector<std::string> velocity_name_vec) {
     
     while (!this->describe_parameters_client_->wait_for_service(std::chrono::seconds(1))){
-        RCLCPP_WARN(this->get_logger(), "Waiting for Geting Describe Parameter Service Server to be up...");
+        RCLCPP_WARN(this->get_logger(), "Waiting for Get Describe Parameter Service Server to be up...");
     }
     
     auto request = std::make_shared<rcl_interfaces::srv::DescribeParameters::Request>();

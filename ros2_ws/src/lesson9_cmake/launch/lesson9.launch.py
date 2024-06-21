@@ -70,11 +70,6 @@ def generate_launch_argument_dict() -> Dict[str, DeclareLaunchArgument]:
 
 
 def generate_launch_configuration_dict(launch_argument_dict: Dict[str, DeclareLaunchArgument]) -> Dict[str, LaunchConfiguration]:
-    """
-    Generate launch argument dictionary
-    :param launch_argument_dict: 
-    :return: Dict[str, LaunchConfiguration]
-    """
     launch_configuration_dict = {}
     declare_name: str
     for declare_name in launch_argument_dict.keys():

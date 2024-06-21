@@ -26,14 +26,13 @@ endif()
 include_directories(include)
 
 add_executable(teleop_in_terminal_exe
-  src/teleop_in_terminal.cpp
   src/main.cpp
-  src/get_key_.cpp
-  src/backward_.cpp
-  src/forward_.cpp
-  src/turn_left_.cpp
-  src/turn_right_.cpp
-  src/stop_.cpp
+  src/get_key.cpp
+  src/backward.cpp
+  src/forward.cpp
+  src/turn_left.cpp
+  src/turn_right.cpp
+  src/stop.cpp
 )
 
 ament_target_dependencies(teleop_in_terminal_exe rclcpp geometry_msgs)

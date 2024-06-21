@@ -30,20 +30,23 @@ class SingleThreadExecutor: public rclcpp::Node{
 
  private:
    void callback_timer_1_(){
-        
+
+    RCLCPP_INFO(this->get_logger(), "Timer1 call counts: %d", ++this->count_1_);
     std::this_thread::sleep_for(std::chrono::seconds(3));
     RCLCPP_INFO(this->get_logger(), "Callback from Timer 1.");
    
    }
    void callback_timer_2_(){
         
+    RCLCPP_INFO(this->get_logger(), "Timer2 call counts: %d", ++this->count_2_);
     std::this_thread::sleep_for(std::chrono::seconds(3));
     RCLCPP_INFO(this->get_logger(), "Callback from Timer 2.");
    
    }
    
    void callback_timer_3_(){
-        
+
+    RCLCPP_INFO(this->get_logger(), "Timer3 call counts: %d", ++this->count_3_);    
     std::this_thread::sleep_for(std::chrono::seconds(3));
     RCLCPP_INFO(this->get_logger(), "Callback from Timer 3.");
    
@@ -53,6 +56,7 @@ class SingleThreadExecutor: public rclcpp::Node{
    rclcpp::TimerBase::SharedPtr timer_2_;
    rclcpp::TimerBase::SharedPtr timer_3_;
 
+   int count_1_, count_2_, count_3_ = 0; 
 
 };
 

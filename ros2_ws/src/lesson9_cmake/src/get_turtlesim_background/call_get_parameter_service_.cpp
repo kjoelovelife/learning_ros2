@@ -14,9 +14,11 @@
 * limitations under the License.
 * Author    : Brady Guo
 * Maintainer: Brady Guo
+* reference: https://favtutor.com/blogs/iterate-through-map-cpp
 *******************************************************************************/
 
 #include "lesson9_cmake/get_turtlesim_background.hpp"
+
 
 void GetTurtlesimBackground::call_get_parameter_service_(std::vector<std::string> turtlesim_bg_name_vec) {
     

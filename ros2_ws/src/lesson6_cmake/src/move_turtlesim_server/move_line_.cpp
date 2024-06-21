@@ -23,8 +23,8 @@ void MoveTurtlesimServer::move_line_() {
   
   RCLCPP_INFO_STREAM(this->get_logger(), "Moving along with a line!");
 
-  this->twist_.linear.x  = 0.2;
-  this->twist_.angular.z = 0.0;
+  this->twist_.linear.x  = this->specific_speed_;
+  this->twist_.angular.z = this->stop_speed_;
   
   for (int number = 0; number < 5; number++) {
     this->publisher_->publish(this->twist_);

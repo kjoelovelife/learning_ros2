@@ -19,29 +19,21 @@
 #include "lesson8_cmake/catch_the_turtle.hpp"
 
 void CatchTheTurtle::call_catch_turtle_service_(std::string turtle_name){
-    // make the most of "this"
     while (!call_catch_turtle_client_->wait_for_service(std::chrono::seconds(1))){   
         RCLCPP_WARN(this->get_logger(), "Waiting for Service Server to be up...");
     }
-
-    // make the most of full type name
-    // using auto to determine the type can help make the code more concise.
     auto request = std::make_shared<lesson_interfaces::srv::CatchTurtle::Request>();
     request->name = turtle_name;
 
     auto future = call_catch_turtle_client_->async_send_request(request);
 
-    // notice space after word
-    try {
+    try{
         auto response = future.get();
-
-        // Using positive condition as possible
-        if (!response->success)
+        if (!response->success) {
             RCLCPP_ERROR(this->get_logger(), "Failed to catch Turtle %s ", turtle_name.c_str());
-
+        }
     }
-    // type declaration can be separated from parameter.
-    catch (const std::exception& e){
+    catch (const std::exception &e){
         RCLCPP_ERROR(this->get_logger(), "Service call failed.");
     }
 

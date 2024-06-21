@@ -23,7 +23,7 @@
 #include <vector>
 #include <rclcpp/rclcpp.hpp>
 #include <lesson_interfaces/srv/move_turtlesim.hpp>
-#include "turtlesim_path.h"
+#include "lesson6_cmake/turtlesim_path.h"
 
 class MoveTurtlesimClient: public rclcpp::Node{
  public:

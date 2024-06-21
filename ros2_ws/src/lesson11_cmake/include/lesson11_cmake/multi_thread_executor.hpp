@@ -23,13 +23,13 @@
 
 using namespace std::chrono;
 
-class MultiThreadExecutor: public rclcpp::Node{
+class MultiThreadExecutor: public rclcpp::Node {
  public:
     MultiThreadExecutor(std::string node_name="multi_thread_executor_node");
 
 
  private:
-   void callback_timer_1_(){
+   void callback_timer_1_() {
 
     RCLCPP_INFO(this->get_logger(), "Timer1 call counts: %d", ++this->count_1_);
     std::this_thread::sleep_for(std::chrono::seconds(3));

@@ -50,13 +50,13 @@ class FollowTheTurtle: public rclcpp::Node{
     rclcpp::Client<turtlesim::srv::Spawn>::SharedPtr turtle2_spawn_client_;
     rclcpp::TimerBase::SharedPtr control_loop_;
 
-    std::string turtle2_name_;
-    turtlesim::msg::Pose turtle1_pose_;
-    turtlesim::msg::Pose turtle2_pose_;
-    double turtlesim_bound_;
-    double p_controller_coefficient_;
-    bool check_turtle1_up;
-    bool check_turtle2_up;
+    std::string turtle2_name_ {};
+    turtlesim::msg::Pose turtle1_pose_ {};
+    turtlesim::msg::Pose turtle2_pose_ {};
+    double turtlesim_bound_ {};
+    double p_controller_coefficient_ {};
+    bool check_turtle1_up {};
+    bool check_turtle2_up {};
 
     
 

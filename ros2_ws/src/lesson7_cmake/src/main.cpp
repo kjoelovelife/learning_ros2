@@ -21,7 +21,29 @@
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);    
-    rclcpp::Node::SharedPtr node = std::make_shared<TeleopInTerminal>("teleop_in_terminal_node");
+    std::shared_ptr<TeleopInTerminal> node = std::make_shared<TeleopInTerminal>("teleop_in_terminal_node");
+    int key {};
+
+    while(rclcpp::ok()){
+        // get the pressed key
+        key = node->get_key();
+        if (key == 'w')
+            node->forward();
+        else if (key == 'x')
+            node->backward();
+        else if (key == 'a')
+            node->turn_left();
+        else if (key == 'd')
+            node->turn_right();
+        else if (key == 's')
+            node->stop();
+        else {
+            node->stop();
+            if (key == '\x03')
+            break;
+        }
+    }
+        
     rclcpp::spin(node);
     rclcpp::shutdown();
     return 0;

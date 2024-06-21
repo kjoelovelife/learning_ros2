@@ -20,7 +20,6 @@
 
 void TurtleSpawner::callback_spawn_turtle_timer_(){
     
-    // using "this" as possible
     turtle_counter_ += 1;
     auto turtle_name = turtle_name_prefix_ + std::to_string(turtle_counter_);
     std::random_device rd;

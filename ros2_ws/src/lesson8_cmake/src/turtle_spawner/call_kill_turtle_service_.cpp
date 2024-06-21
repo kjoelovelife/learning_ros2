@@ -40,7 +40,7 @@ void TurtleSpawner::call_kill_turtle_service_(std::string turtle_name){
             }
         }
     }
-    catch (const std::exception &e){
+    catch (const std::exception& e){
         RCLCPP_ERROR(this->get_logger(), "Kill service call failed.");
     }
 

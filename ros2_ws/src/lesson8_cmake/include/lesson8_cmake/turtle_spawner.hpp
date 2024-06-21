@@ -42,9 +42,8 @@ class TurtleSpawner: public rclcpp::Node{
   void callback_spawn_turtle_timer_();
   void call_spawn_service_(std::string turtle_name, float x, float y, float theta);
   void publish_alive_turtles_();
-  void callback_catch_turtle_(
-      const lesson_interfaces::srv::CatchTurtle::Request::SharedPtr request, 
-      const lesson_interfaces::srv::CatchTurtle::Response::SharedPtr response);
+  void callback_catch_turtle_(const lesson_interfaces::srv::CatchTurtle::Request::SharedPtr request, 
+                              const lesson_interfaces::srv::CatchTurtle::Response::SharedPtr response);
   void call_kill_turtle_service_(std::string turtle_name);
 
   rclcpp::Publisher<lesson_interfaces::msg::TurtleArray>::SharedPtr alive_turtles_publisher_;

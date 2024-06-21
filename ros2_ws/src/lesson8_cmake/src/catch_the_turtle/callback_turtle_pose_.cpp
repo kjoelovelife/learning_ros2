@@ -18,8 +18,6 @@
 
 #include "lesson8_cmake/catch_the_turtle.hpp"
 
-// using undersocre and type name after parameter name
-// Code line under 20 may consider put inside the header file
 void CatchTheTurtle::callback_turtle_pose_(const turtlesim::msg::Pose::SharedPtr msg){
     this->pose_ = *msg.get();
     this->get_turtle_pose_ = true;

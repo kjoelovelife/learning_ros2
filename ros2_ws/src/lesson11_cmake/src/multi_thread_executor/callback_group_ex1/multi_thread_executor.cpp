@@ -19,7 +19,7 @@
 #include "lesson11_cmake/multi_thread_executor.hpp"
 
 MultiThreadExecutor::MultiThreadExecutor(std::string node_name)
-    : Node(node_name) {
+        : Node(node_name) {
     
     this->callback_group_1_ = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
     this->callback_group_2_ = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);

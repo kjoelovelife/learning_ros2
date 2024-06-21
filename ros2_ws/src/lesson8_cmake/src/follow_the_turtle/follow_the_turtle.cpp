@@ -18,9 +18,8 @@
 
 #include "lesson8_cmake/follow_the_turtle.hpp"
 
-// https://google.github.io/styleguide/cppguide.html#Function_Declarations_and_Definitions
 FollowTheTurtle::FollowTheTurtle(std::string node_name)
-        : Node(node_name) {
+    : Node(node_name) {
 
     this->turtle2_name_ = "turtle2";
     this->turtlesim_bound_ = 11.0;

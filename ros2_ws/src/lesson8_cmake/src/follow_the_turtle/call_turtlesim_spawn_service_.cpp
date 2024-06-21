@@ -25,8 +25,6 @@ void FollowTheTurtle::call_turtlesim_spawn_service_(){
 
 
     auto request = std::make_shared<turtlesim::srv::Spawn::Request>();
-    
-    // carefule random seed
     std::random_device rd;
     std::default_random_engine gen(rd());
     std::uniform_real_distribution<double> dist_xy(0.0, this->turtlesim_bound_);

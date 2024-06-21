@@ -41,10 +41,13 @@ class MoveTurtlesimServer: public rclcpp::Node {
     void move_triangle_();
     void stop_();
 
+    double specific_speed_ {0.2};
+    double stop_speed_ {0.0};
     geometry_msgs::msg::Twist twist_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_;
     rclcpp::Service<lesson_interfaces::srv::MoveTurtlesim>::SharedPtr service_;
     std::string service_name_ {"move_turtlesim"};
+
 
 };
 

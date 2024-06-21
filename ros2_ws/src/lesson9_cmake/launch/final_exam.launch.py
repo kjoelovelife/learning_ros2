@@ -16,8 +16,12 @@
 #
 # Authors: Tsung-Meng Guo(brady_guo@brogent.com)
 ##########################################################################
-import launch
+
+# Native library
 import os
+
+# ROS 2 Library
+import launch
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
@@ -27,7 +31,10 @@ from launch.substitutions import LaunchConfiguration
 from launch.substitutions import TextSubstitution
 from launch.conditions import IfCondition
 from launch.conditions import UnlessCondition
-from typing import (Dict, List, Tuple)
+from typing import Dict
+from typing import List
+from typing import Tuple
+
 
 THIS_PACKAGE = "lesson9_cmake"
 

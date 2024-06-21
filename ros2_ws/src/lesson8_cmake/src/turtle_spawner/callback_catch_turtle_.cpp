@@ -18,10 +18,8 @@
 
 #include "lesson8_cmake/turtle_spawner.hpp"
 
-// https://google.github.io/styleguide/cppguide.html#Function_Declarations_and_Definitions
-void TurtleSpawner::callback_catch_turtle_(
-        const lesson_interfaces::srv::CatchTurtle::Request::SharedPtr request, 
-        const lesson_interfaces::srv::CatchTurtle::Response::SharedPtr response) {
+void TurtleSpawner::callback_catch_turtle_(const lesson_interfaces::srv::CatchTurtle::Request::SharedPtr request, 
+                                           const lesson_interfaces::srv::CatchTurtle::Response::SharedPtr response){
 
     kill_turtle_threads_.push_back(
         std::make_shared<std::thread>(

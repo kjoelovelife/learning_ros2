@@ -18,8 +18,7 @@
 
 #include "lesson11_cmake/single_thread_executor.hpp"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     rclcpp::init(argc, argv);    
     rclcpp::Node::SharedPtr node = std::make_shared<SingleThreadExecutor>("default_executor_node");
     rclcpp::spin(node);

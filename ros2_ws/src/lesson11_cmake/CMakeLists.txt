@@ -44,13 +44,22 @@ add_executable(single_thread_executor_exe
 
 ament_target_dependencies(single_thread_executor_exe rclcpp)
 
-set(PackageName multi_thread_executor)
-add_executable(multi_thread_executor_with_default_callback_group_exe
-  src/${PackageName}/default_callback_group/multi_thread_executor.cpp
-  src/${PackageName}/default_callback_group/main.cpp
+
+add_executable(single_thread_multi_node_exe
+  src/${PackageName}/single_thread_executor.cpp
+  src/${PackageName}/multi_node/main.cpp
 )
 
-ament_target_dependencies(multi_thread_executor_with_default_callback_group_exe rclcpp)
+ament_target_dependencies(single_thread_multi_node_exe rclcpp)
+
+
+set(PackageName multi_thread_executor)
+add_executable(multi_thread_executor_without_callback_group_exe
+  src/${PackageName}/without_callback_group/multi_thread_executor.cpp
+  src/${PackageName}/without_callback_group/main.cpp
+)
+
+ament_target_dependencies(multi_thread_executor_without_callback_group_exe rclcpp)
 
 add_executable(multi_thread_executor_callback_group_ex1_exe
   src/${PackageName}/callback_group_ex1/multi_thread_executor.cpp
@@ -73,15 +82,41 @@ add_executable(multi_thread_executor_callback_group_ex3_exe
 )
 ament_target_dependencies(multi_thread_executor_callback_group_ex3_exe rclcpp)
 
+add_executable(multi_node_with_ex1_exe
+  src/${PackageName}/multi_node/main.cpp
+  src/${PackageName}/callback_group_ex1/multi_thread_executor.cpp
+
+)
+ament_target_dependencies(multi_node_with_ex1_exe rclcpp)
+
+add_executable(multi_node_with_ex2_exe
+  src/${PackageName}/multi_node/main.cpp
+  src/${PackageName}/callback_group_ex2/multi_thread_executor.cpp
+
+)
+ament_target_dependencies(multi_node_with_ex2_exe rclcpp)
+
+
+add_executable(multi_node_with_ex3_exe
+  src/${PackageName}/multi_node/main.cpp
+  src/${PackageName}/callback_group_ex3/multi_thread_executor.cpp
+
+)
+ament_target_dependencies(multi_node_with_ex3_exe rclcpp)
+
 
 # install program
 install(TARGETS
   default_executor_exe  
   single_thread_executor_exe
-  multi_thread_executor_with_default_callback_group_exe
+  single_thread_multi_node_exe
+  multi_thread_executor_without_callback_group_exe
   multi_thread_executor_callback_group_ex1_exe
   multi_thread_executor_callback_group_ex2_exe
   multi_thread_executor_callback_group_ex3_exe
+  multi_node_with_ex1_exe
+  multi_node_with_ex2_exe
+  multi_node_with_ex3_exe
   DESTINATION lib/${PROJECT_NAME}
 )
 

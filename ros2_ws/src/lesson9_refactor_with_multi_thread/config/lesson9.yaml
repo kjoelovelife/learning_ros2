@@ -1,0 +1,3 @@
+/final_exam_node:
+  ros__parameters:
+    change_bg_frequency: 100.0

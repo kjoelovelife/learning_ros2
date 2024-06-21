@@ -32,12 +32,12 @@ void SetTurtleVelocity::call_describe_parameter_service_(std::vector<std::string
         auto response = future.get();
         rcl_interfaces::msg::ParameterDescriptor velocity_parameter_descriptor;
         rcl_interfaces::msg::FloatingPointRange velocity_range;
-        velocity_parameter_descriptor = response->descriptors[this->request_parameter_dict_["velocity"]];
+        velocity_parameter_descriptor = response->descriptors.at(this->request_parameter_dict_.at("velocity"));
         velocity_range = velocity_parameter_descriptor.floating_point_range.at(0);
         this->velocity_upper_bound_ = velocity_range.to_value;
         this->velocity_lower_bound_ = velocity_range.from_value;
     }
-    catch (const std::exception &e){
+    catch (const std::exception& e){
         RCLCPP_ERROR(this->get_logger(), "Describe_parameter service call failed.");
     }   
 
