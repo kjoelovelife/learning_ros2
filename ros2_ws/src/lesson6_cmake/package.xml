@@ -4,7 +4,7 @@
   <name>lesson6_cmake</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="joe_lin@brogent.com">ros</maintainer>
+  <maintainer email="weichih.lin@protonmail.com">Wei-Chih Lin</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
